@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>clients</title>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.css" rel="stylesheet">
+  <link rel ="stylesheet"type="text/css" th:href="@{/css/accueil.css}" />
+   <link rel ="stylesheet"type="text/css" th:href="@{/css/clienth.css}" />
+
+	 <link rel="stylesheet" href="css/bootstrap.min.css">
+         
+            <link rel="stylesheet" href="css/animate.min.css">
+           
+            <link rel="stylesheet" href="css/style.css">
+            <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+
+</head>
+<body>
+  <div class="header-area header-transparrent ">
+        <div class="main-header header-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-2">
+                        <div class="logo">
+                            <img src="/images/logo.png" height="70" width="100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10">
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">    
+                                    <li ><a href="/accueil"> Home</a></li>
+                                     <li><a >Client</a>
+                                        <ul class="submenu">
+                                            <li><a href="/listClients.html">List Client</a></li>
+                                            <li><a href="/addClient.html">Add Client</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li class="active"><a href="/Clienthisto">Client_History</a></li>
+                                    <li><a href="/index.html">Excel</a></li>
+                                    <li><a href="contact.html">Contact</a>
+                                    
+                                 
+                                     
+                                  
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>  
+    <br>
+            <br>
+            <br>
+            <br>
+			<br>
+			<br>
+            <br>
+            <br>
+ 
+  <div class="search_box">
+  <form th:action="@{/search}">
+      
+        <input class="input_box" type="text" name="acctstatustype" id="acctstatustype"  th:value="${acctstatustype}" placeholder="Search By ip_Status" required >
+        
+      
+         <button type="submit" class="btn btn-default">Search</button>
+        
+      </a>  
+      </form>
+       </div>
+ <!--  <div class="box">
+ 
+         
+<form th:action="@{/search}">
+     <input type="text" name="acctstatustype" id="acctstatustype" size="50" th:value="${acctstatustype}" placeholder="Search By ip_Status"   required />
+   
+    <input type="submit" value="Search By ip_Status" />
+    
+    
+</form>
+--> 
+<br>
+<br>
+<br>
+<div class="search_boxx">
+ 
+<form th:action="@{/rechercheframe}">
+     <input  class="input_box" type="text" name="framedipaddress" id="framedipaddress"  th:value="${framedipaddress}"   placeholder="Search By ip_adress" required />
+   <button type="submit" class="btn btn-default">Search</button>
+    
+    
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="search_boxxx">
+<form th:action="@{/findAllWithAcctstarttimeBefore}">
+  
+
+	
+		 <input  class="input_box" type="text" name="acctstarttime" id="acctstarttime" size="50" th:value="${acctstarttime}" placeholder="Search By Start_Time" required />	
+		 </div>	
+		 <div class="search_boxxxx">
+		 <input class="input_box" type="text" name="acctstoptime" id="acctstoptime" size="50" th:value="${acctstoptime}" placeholder="Search By Stop_Time" required />
+		 </div>	
+		 <div class="search_boxxxxx">
+     <input class="input_box"  type="text" name="framedipaddress" id="framedipaddress" size="50" th:value="${framedipaddress}" placeholder="Search By Ip_Adress" required />
+    </div>	
+    <button type="submit" class="btnn">Search</button>
+    
+    
+</form>
+		<br>
+		<br>
+		<br>
+            <hr>
+            <h1 class="text-center">The client history list</h1>
+			<hr>
+			<table class="table">
+				<thead class="thead-light color">
+					<tr>
+						
+						<th scope="col">Name</th>
+						<th scope="col">Telephone</th>
+						<th scope="col">Cin</th>
+						<th scope="col">Acct_Status_Type</th>
+						<th scope="col">Acct_Start_Time</th>
+						<th scope="col">Acct_Stop_Time</th>
+						<th scope="col">Acct_Session_Time</th>
+						<th scope="col">Framed_Ip_Address</th>
+						<th scope="col">Tel_Adsl</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="client_historique : ${clientshisto}">
+						
+						<td>[[*{client_historique.nom}]] 
+						
+
+						
+						</td>
+						<td>[[*{client_historique.telephone}]] <!-- Button trigger modal -->
+							
+						</td>
+						<td>[[*{client_historique.cin}]] <!-- Button trigger modal --> <br>
+							
+						</td>
+					<td>[[*{client_historique.acctstatustype}]] <!-- Button trigger modal --> <br>
+							
+						</td>
+							<td>[[*{client_historique.acctstarttime}]] <!-- Button trigger modal -->
+							
+						</td>
+						<td>[[*{client_historique.acctstoptime}]] <!-- Button trigger modal -->
+							
+						</td>
+						
+						<td>[[*{client_historique.acctsessiontime}]] <!-- Button trigger modal -->
+							
+						</td>
+						<td>[[*{client_historique.framedipaddress}]] <!-- Button trigger modal -->
+						
+						</td>
+						<td>[[*{client_historique.tel_adsl}]] <!-- Button trigger modal -->
+							
+						</td>
+						
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+	</div>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	
+</body>
+</html>

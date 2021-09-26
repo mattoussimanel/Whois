@@ -1,0 +1,13 @@
+<htmlxmlns
+	="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head></head>
+<body>
+	<divth:fragment="header">
+		<divclass ="container"align="right">
+		<span>Logged user: <spansec:authentication="name"></span>
+		<ath:href="@{/logout}">Sign Out</a>
+			</div>
+			</div>
+</body>
+</html>

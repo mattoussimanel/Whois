@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>clients</title>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.css" rel="stylesheet">
+ <link rel ="stylesheet"type="text/css" th:href="@{/css/accueil.css}" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+            
+            <link rel="stylesheet" href="css/animate.min.css">
+            
+            <link rel="stylesheet" href="css/style.css">
+            <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+<div class="header-area header-transparrent ">
+        <div class="main-header header-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-2">
+                        <div class="logo">
+                            <img src="/images/logo.png" height="70" width="100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10">
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">    
+                                    <li ><a href="/accueil"> Home</a></li>
+                                    
+                                     <li class="active"><a >Client</a>
+                                        <ul class="submenu">
+                                            <li><a href="/listClients.html">List Client</a></li>
+                                            <li><a href="/addClient.html">Add Client</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Clienthisto">Client_Historique</a></li>
+                                    <li><a href="/index.html">Excel</a></li>
+                                    <li><a href="/contact.html">Contact</a>
+                                    
+                                 
+                                     
+                                  
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>   
+	<div class="container">
+		<div class="col-12">
+			 <br>
+                    <br>
+                    <br>
+                    <br>
+			<hr>
+			<h3 class="text-center">Add a Client</h3>
+			<hr>
+			<div class="row">
+				<div class="col-md-6 mx-auto">
+					<div class="card">
+						<div class="card-body">
+							<form action="/addC" method="Post" enctype="multipart/form-data">
+								<div class="form-group">
+									<label for="nom">Client name</label> <input type="text"
+										name="cnom" id="nom" class="form-control"> <label
+										for="telephone">Client Telephone</label> <input type="text"
+										name="telephone" id="telephone" class="form-control"> <label
+										for="adresse">Client Adresse</label> <input type="text"
+										name="adresse" id="adresse" class="form-control"> <label
+										for="attribute">Client Attribute</label> <input type="text"
+										name="attribute" id="attribute" class="form-control">
+										<label
+										for="iproute">Client Iproute</label> <input type="text"
+										name="iproute" id="iproute" class="form-control">
+										<label
+										for="login">Client Login</label> <input type="text"
+										name="login" id="login" class="form-control">
+										<label
+										for="observation">Client Observation</label> <input type="text"
+										name="observation" id="observation" class="form-control">
+										<label
+										for="op">Client Op</label> <input type="text"
+										name="op" id="op" class="form-control">
+										<label
+										for="cin">Client Cin</label> <input type="text"
+										name="cin" id="cin" class="form-control"><label>add
+										an image</label>
+									<div class="custom-file mb-2">
+										<input type="file" name="file" class="custom-file-input"
+											id="customFile"> <label class="custom-file-label"
+											for="customFile">Choose file</label>
+									</div>
+
+									<button type="submit" class="btn btn-light">Add_Client</button>
+								</div>
+							</form>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>

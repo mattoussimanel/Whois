@@ -1,0 +1,21 @@
+
+.btnn{
+    color: #fff;
+ 
+   
+    left: 10%; /* on positionne l'élément à la moitié de l'écran */
+   
+    text-decoration: none;
+   
+    
+    line-height: 40px;
+    
+    border-radius: 50%;
+}
+.search_box:hover .input_box{
+    width: 280px;
+    padding: 0 6px;
+}
+.search_box:hover .btnn{
+    background-color: #61c3a8;
+}

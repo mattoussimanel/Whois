@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>clients</title>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.css" rel="stylesheet">
+  <link rel ="stylesheet"type="text/css" th:href="@{/css/accueil.css}" />
+
+	 <link rel="stylesheet" href="css/bootstrap.min.css">
+            
+            <link rel="stylesheet" href="css/animate.min.css">
+            
+            <link rel="stylesheet" href="css/style.css">
+            <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+		
+		
+</head>
+<body>
+  <div class="header-area header-transparrent ">
+        <div class="main-header header-sticky">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-2">
+                        <div class="logo">
+                            <img src="/images/logo.png" height="70" width="100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10">
+                        <!-- Main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">    
+                                    <li ><a href="/accueil"> Home</a></li>
+                                    
+                                     <li class="active"><a >Client</a>
+                                        <ul class="submenu">
+                                            <li><a href="/listClients.html">List Client</a></li>
+                                            <li><a href="/addClient.html">Add Client</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Clienthisto">Client_Historique</a></li>
+                                    <li><a href="/index.html">Excel</a></li>
+                                    <li><a href="/contact.html">Contact</a>
+                                    
+                                 
+                                     
+                                  
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>   
+  
+
+			
+	<!-- 	<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
+				
+				<ul class="navbar-nav">
+					<li class="nav-item">
+					 <a class="nav-link font-weight-bold" href="/addClient.html" >Add Client</a>
+					</li>
+					<li class="nav-item">
+					 <a class="nav-link font-weight-bold" href="/listClients.html">List of Clients</a>
+					</li>
+				</ul>
+			</nav> -->	
+            <br>
+            <br>
+            <br>
+            <br>
+			<br>
+			
+           
+             <hr>
+            <h1 class="text-center">list of Clients</h1>
+			<hr>
+			<table class="table">
+				<thead class="thead-light color">
+					<tr>
+						<th scope="col">image</th>
+						<th scope="col">name</th>
+						<th scope="col">adresse</th>
+						<th scope="col">telephone</th>
+						<th scope="col">atribute</th>
+						<th scope="col">iproute</th>
+						<th scope="col">login</th>
+						<th scope="col">observation</th>
+						<th scope="col">op</th>
+						<th scope="col">Cin</th>
+						<th scope="col">delete client</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="client : ${clients}">
+						<th scope="row"><img alt="" th:src="*{'data:image/jpeg;base64,'+{client.image}}" style="width: 100px;height: 100px;"></th>
+						<td>[[*{client.nom}]] 
+						<!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-warning btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenter'+*{client.id}">change
+								name</button> <!-- Modal -->
+
+							<div class="modal fade"
+								th:id="*{'exampleModalCenter'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client name</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form action="/changeName" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="hidden"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client name</label> <input type="text"
+														name="newCname" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</td>
+						<td>[[*{client.adresse}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-light btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterDesc'+${client.id}">change
+								adresse</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterDesc'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client adresse</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeAdresse" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client adresse</label> <input type="text"
+														name="newAdresse" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>[[*{client.telephone}]] <!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterPrice'+${client.id}">change
+								telephone</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterPrice'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client telephone</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeTelephone" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client telephone</label> <input type="text"
+														name="newTelephone" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					<td>[[*{client.attribute}]] <!-- Button trigger modal --> <br>
+							<button type="button" class="btn btn-info btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterattribute'+${client.id}">change
+								attribute</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterattribute'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client attribute</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeAttribute" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client attribute</label> <input type="text"
+														name="newAttribute" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+							<td>[[*{client.iproute}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-light btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterIproute'+${client.id}">change iproute</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterIproute'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client iproute</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeIproute" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client iproute</label> <input type="text"
+														name="newIproute" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>[[*{client.login}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-warning btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterlogin'+${client.id}">change
+								login</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterlogin'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client login</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeLogin" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client login</label> <input type="text"
+														name="newLogin" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						
+						<td>[[*{client.observation}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-success btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterobservation'+${client.id}">change
+								observation</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterobservation'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client observation</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeObservation" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client observation</label> <input type="text"
+														name="newObservation" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>[[*{client.op}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-info btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCenterop'+${client.id}">change
+								op</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCenterop'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client op</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeOp" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client op</label> <input type="text"
+														name="newOp" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td>[[*{client.cin}]] <!-- Button trigger modal -->
+							<br>
+							<button type="button" class="btn btn-info btn-sm mt-2"
+								data-toggle="modal"
+								th:attr="data-target='#exampleModalCentercin'+${client.id}">change
+								cin</button> <!-- Modal -->
+							<div class="modal fade"
+								th:id="*{'exampleModalCentercin'+{client.id}}" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">change
+												client cin</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+											<form action="/changeCin" method="post">
+												<div class="form-group">
+													<label>client id</label> <input type="text"
+														th:value="*{client.id}" class="form-control" name="id">
+													<label>new Client cin</label> <input type="text"
+														name="newCin" class="form-control"> <br>
+													<button type="submit" class="btn btn-primary">submit</button>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td><a th:href="@{/deleteClient/{id}(id=${client.id})}"
+							class="btn btn-danger mt-4">delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+		</div>
+	</div>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+</html>

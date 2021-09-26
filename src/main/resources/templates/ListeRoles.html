@@ -1,0 +1,51 @@
+<!DOCTYPEhtml>
+<htmlxmlns:th="http://www.thymeleaf.org">
+	<head>
+<metacharset="utf-8"> <metahttp-equiv
+	="x-ua-compatible"content="ie=edge">
+<title>Providers</title>
+<metaname ="viewport"content="width=device-width, initial-scale=1">
+<linkrel
+	="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous"> <linkrel
+	="stylesheet"href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous"><!--<link rel="stylesheet" href="../css/shards.min.css"> -->
+	</head>
+	<body>
+		<divclass="containermy-2"> <divclass="card"> <divclass="card-body">
+		<divth:switch ="${providers}"class="container my-5">
+			<pclass="my-5"> <ath:href
+				="@{'/role/add/'}"class="btn btn-primary">
+				<iclass="fasfa-user-plusml-2">Add Role</i> </a>
+				</p>
+				<divclass="col-md-10"> <h2th:case="null">No Role yet!</h2>
+					<divth:case="*">
+						<h2>
+							Nombre total de role= <span th:text="${nbr}">10</span>
+						</h2>
+						<tableclass ="tabletable-stripedtable-responsive-md">
+						Smart IT PARTNERWe build Smart Solutions
+						forYouhttps://smart-it-partner.com/
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Role</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="role : ${roles}">
+								<td th:text="${role.id}"></td>
+								<td th:text="${role.role}"></td>
+							</tr>
+						</tbody>
+						</table>
+						</div>
+						</div>
+						</div>
+						</div>
+						</div>
+						</div>
+	</body>
+	</html>
